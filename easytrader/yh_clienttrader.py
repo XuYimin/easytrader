@@ -191,12 +191,13 @@ class YHClientTrader():
         win32api.PostMessage(tree_view_hwnd, win32con.WM_KEYDOWN, win32con.VK_F4, 0)
         time.sleep(0.5)
         self.capital_window_hwnd = win32gui.GetDlgItem(operate_frame_hwnd, 0xE901)  # 资金股票窗口框架
+        self.capital_grid = win32gui.GetDlgItem(self.capital_window_hwnd, 0x51C) 
 
     def balance(self):
         return self.get_balance()
 
     def get_balance(self):
-        self._set_foreground_window(self.capital_window_hwnd)
+        self._set_foreground_window(self.capital_grid)
         time.sleep(0.3)
         data = self._read_clipboard()
         return self.project_copy_data(data)[0]
